@@ -67,9 +67,9 @@ replacement_conf_files=(
 )
 
 rm -fr ${OPENSHIFT_TOMCAT_DIR}/conf
-cp -r ${OPENSHIFT_TOMCAT_DIR}/version/shared/configuration ${OPENSHIFT_TOMCAT_DIR}/conf
+cp -r ${OPENSHIFT_TOMCAT_DIR}/version/shared/ ${OPENSHIFT_TOMCAT_DIR}/conf
 for conf_file in "${replacement_conf_files[@]}"; do
-  sed ${sed_replace_env} ${OPENSHIFT_TOMCAT_DIR}/version/sharded/${conf_file} > ${OPENSHIFT_TOMCAT_DIR}/conf/${conf_file}
+  sed ${sed_replace_env} -i ${OPENSHIFT_TOMCAT_DIR}/conf/${conf_file}
 done
 
 # Control the Tomcat instance

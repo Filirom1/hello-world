@@ -5,7 +5,7 @@ case "$1" in
     version="$2"
 esac
 
-SYSTEM_CBP_DIR="/opt/apache-tomcat-${version}"
+SYSTEM_CBP_DIR="/opt/apache-tomcat-7.0"
 
 if [ ! -d ${SYSTEM_CBP_DIR} ]; then
   echo "Couldn't find system tomcat dir at ${SYSTEM_CBP_DIR}" 1>&2

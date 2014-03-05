@@ -15,9 +15,6 @@ fi
 mkdir -p ${OPENSHIFT_CBP_DIR}/{run,tmp,conf,logs}
 mkdir -p ${OPENSHIFT_HOMEDIR}/.m2
 
-# Set up the config directory in the user repository template
-cp ${OPENSHIFT_CBP_DIR}/versions/{shared,${version}}/configuration/* ${OPENSHIFT_CBP_DIR}/template/.openshift/config
-
 # Link the system Tomcat binaries to the cart Tomcat instance directory
 ln -sf ${SYSTEM_CBP_DIR}/bin/bootstrap.jar ${OPENSHIFT_CBP_DIR}/bin/bootstrap.jar
 ln -sf ${SYSTEM_CBP_DIR}/bin/commons-daemon.jar ${OPENSHIFT_CBP_DIR}/bin/commons-daemon.jar

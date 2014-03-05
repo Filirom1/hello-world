@@ -1,6 +1,6 @@
 %global cartridgedir %{_libexecdir}/openshift/cartridges/v2/tomcat
 
-Summary:       Provides TOMCAT support
+Summary:       Provides CBP support
 Name:          openshift-origin-cartridge-tomcat
 Version:       0.6.8
 Release:       1%{?dist}
@@ -26,7 +26,7 @@ BuildRequires: jpackage-utils
 BuildArch:     noarch
 
 %description
-Provides TOMCAT support to OpenShift. (Cartridge Format V2)
+Provides CBP support to OpenShift. (Cartridge Format V2)
 
 %prep
 %setup -q
@@ -98,7 +98,7 @@ alternatives --set maven-3.0 /usr/share/maven
   [0.6.1-1]. (filirom1@gmail.com)
 - Initialized to use tito. (filirom1@gmail.com)
 - fix JDK path (filirom1@gmail.com)
-- update SYSTEM_TOMCAT_DIR (filirom1@gmail.com)
+- update SYSTEM_CBP_DIR (filirom1@gmail.com)
 - dos2unix (filirom1@gmail.com)
 - chmod +x (filirom1@gmail.com)
 - 'redhat' is reserved.: 'Cartridge-Vendor' (filirom1@gmail.com)

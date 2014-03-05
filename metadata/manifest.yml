@@ -1,37 +1,29 @@
-Name: tomcat
-Cartridge-Short-Name: TOMCAT
-Cartridge-Vendor: atosworldline
+Name: cbp
+Cartridge-Short-Name: CBP
+Display-Name: CBP Cartridge
+Description: "A cbp cartridge"
+Version: '0.2.4'
+License: worldline
+Vendor: worldline
 Cartridge-Version: 0.0.1
-Display-Name: Tomcat 7.0
-Description: "Apache Tomcat 7 is an open source software implementation of the Java Servlet and JavaServer Pages technologies"
-Version: '7.0'
-Versions: ['7.0', '6.0']
-License: LGPL
-License-Url: http://www.gnu.org/copyleft/lesser.txt
-Vendor: apache
+Cartridge-Vendor: worldline
 Categories:
   - service
-  - java
-  - tomcat
-  - tomcat7
-  - web_framework
-Website: http://tomcat.apache.org/
-Help-Topics:
-  "Developer Center": https://www.openshift.com/developers
+  - embedded
+Scaling:
+  Min: 1
+  Max: 1
 Cart-Data:
-  - Key: OPENSHIFT_TOMCAT_LOG_DIR
+  - Key: OPENSHIFT_CBP_LOG_DIR
     Type: environment
     Description: "Directory to store application log files."
   - Key: OPENSHIFT_TMP_DIR
     Type: environment
     Description: "Directory to store application temporary files."
-  - Key: OPENSHIFT_REPO_DIR
-    Type: environment
-    Description: "Application root directory where application files reside. This directory is reset every time you do a git-push"
-  - Key: OPENSHIFT_TOMCAT_HTTP_PORT
+  - Key: OPENSHIFT_CBP_HTTP_PORT
     Type: environment
     Description: "Internal port to which the web-framework binds to."
-  - Key: OPENSHIFT_TOMCAT_IP
+  - Key: OPENSHIFT_CBP_IP
     Type: environment
     Description: "Internal IP to which the web-framework binds to."
   - Key: OPENSHIFT_APP_DNS
@@ -50,12 +42,7 @@ Cart-Data:
     Type: environment
     Description: "Unique ID which identified the gear. This value changes between gears."
 Provides:
-  - "tomcat-7.0"
-  - "tomcat"
-  - "tomcat(version) = 7.0.0"
-  - "tomcat(version) >= 7.0"
-  - "tomcat-7.0"
-  - "tomcat-7.0.0"
+  - "cbp"
 Publishes:
   get-internal-uri:
     Type: "NET_TCP:http"
@@ -74,46 +61,20 @@ Subscribes:
     Type: "NET_TCP:jdbc"
   set-generic-java:
     Type: "ENV:NET_TCP:generic-java"
-Group-Overrides:
-  - components:
-    - "tomcat-7.0"
-    - web_proxy
 Endpoints:
   - Private-IP-Name:   IP
     Private-Port-Name: HTTP_PORT
-    Private-Port:      8080
+    Private-Port:      8888
     Public-Port-Name:  HTTP_PROXY_PORT
     Mappings:
-      - Frontend:      ""
+      - Frontend:      "/cbp"
         Backend:       ""
-        Options:       { "websocket": 1}
-      - Frontend:      "/health"
-        Backend:       ""
-        Options:       { health: true}
+  - Private-IP-Name:   IP
+    Private-Port-Name: ACTIVEMQ_PORT
+    Private-Port:      61616
+    Public-Port-Name:  ACTIVEMQ_PROXY_PORT
   - Private-IP-Name:   IP
     Private-Port-Name: JPDA_PORT
-    Private-Port:      8787
+    Private-Port:      9797
 Additional-Control-Actions:
     - threaddump
-Version-Overrides:
-  '6.0':
-    Display-Name: Tomcat 6.0
-    Description: "Apache Tomcat 6 is an open source software implementation of the Java Servlet and JavaServer Pages technologies"
-    Provides:
-      - "tomcat-6.0"
-      - "tomcat"
-      - "tomcat(version) = 6.0.0"
-      - "tomcat(version) >= 6.0"
-      - "tomcat-6.0"
-      - "tomcat-6.0.0"
-    Categories:
-      - service
-      - java
-      - tomcat
-      - tomcat6
-      - web_framework
-    Group-Overrides:
-      - components:
-        - "tomcat-6.0"
-        - web_proxy
-

@@ -67,7 +67,7 @@ replacement_conf_files=(
 )
 
 rm -fr ${OPENSHIFT_TOMCAT_DIR}/conf
-cp -r ${OPENSHIFT_TOMCAT_DIR}/version/shared/ ${OPENSHIFT_TOMCAT_DIR}/conf
+cp -r ${OPENSHIFT_TOMCAT_DIR}/versions/shared/ ${OPENSHIFT_TOMCAT_DIR}/conf
 for conf_file in "${replacement_conf_files[@]}"; do
   sed ${sed_replace_env} -i ${OPENSHIFT_TOMCAT_DIR}/conf/${conf_file}
 done

@@ -54,6 +54,7 @@ fi
 CLASSPATH="${CLASSPATH}:${CATALINA_HOME}/bin/bootstrap.jar"
 CLASSPATH="${CLASSPATH}:${CATALINA_HOME}/bin/commons-logging-tomcat-juli.jar"
 CLASSPATH="${CLASSPATH}:${CATALINA_HOME}/bin/tomcat-juli.jar"
+CLASSPATH="${CLASSPATH}:${OPENSHIFT_CBP_DIR}/lib/mysql-connector-java-5.1.6.jar"
 CLASSPATH="${CLASSPATH}:$(build-classpath commons-daemon 2>/dev/null)"
 
 # Filter user-owned configuration files through sed to replace all
@@ -71,6 +72,9 @@ cp -r ${OPENSHIFT_CBP_DIR}/versions/shared/ ${OPENSHIFT_CBP_DIR}/conf
 for conf_file in "${replacement_conf_files[@]}"; do
   sed ${sed_replace_env} -i ${OPENSHIFT_CBP_DIR}/conf/${conf_file}
 done
+
+export LD_PRELOAD=${OPENSHIFT_CBP_DIR}/lib/bindhack.so
+export BIND_SRC=${OPENSHIFT_CBP_IP}
 
 # Control the Tomcat instance
 if [ "$1" = "start" ]; then

@@ -66,10 +66,10 @@ replacement_conf_files=(
   "context.xml"
 )
 
-rm -fr ${OPENSHIFT_TOMCAT_DIR}/conf
-cp -r ${OPENSHIFT_TOMCAT_DIR}/versions/shared/ ${OPENSHIFT_TOMCAT_DIR}/conf
+rm -fr ${OPENSHIFT_CBP_DIR}/conf
+cp -r ${OPENSHIFT_CBP_DIR}/versions/shared/ ${OPENSHIFT_CBP_DIR}/conf
 for conf_file in "${replacement_conf_files[@]}"; do
-  sed ${sed_replace_env} -i ${OPENSHIFT_TOMCAT_DIR}/conf/${conf_file}
+  sed ${sed_replace_env} -i ${OPENSHIFT_CBP_DIR}/conf/${conf_file}
 done
 
 # Control the Tomcat instance
